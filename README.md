@@ -6,4 +6,3 @@ BaseGridView.java
 EnhanceHorizontalGridlView.java
 EnhanceVerticalGridView.java
 
-好用给好评！~

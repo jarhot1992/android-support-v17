@@ -59,7 +59,10 @@ public class EnhanceVerticalGridView extends VerticalGridView {
             case KeyEvent.KEYCODE_DPAD_DOWN:
                 if (oldPosition < itemCount - 1) {
                     newPosition++;
-                    newView = findViewHolderForAdapterPosition(newPosition).itemView;
+                    ViewHolder viewHolder = findViewHolderForAdapterPosition(newPosition);
+                    if (viewHolder == null)
+                        return true;
+                    newView = viewHolder.itemView;
                     if (mSelectedItemViewChangedListener != null) {
                         mSelectedItemViewChangedListener
                                 .onSelectedItemViewChanged(oldView, newView,
@@ -71,7 +74,10 @@ public class EnhanceVerticalGridView extends VerticalGridView {
             case KeyEvent.KEYCODE_DPAD_UP:
                 if (oldPosition > 0) {
                     newPosition--;
-                    newView = findViewHolderForAdapterPosition(newPosition).itemView;
+                    ViewHolder viewHolder = findViewHolderForAdapterPosition(newPosition);
+                    if (viewHolder == null)
+                        return true;
+                    newView = viewHolder.itemView;
                     if (mSelectedItemViewChangedListener != null) {
                         mSelectedItemViewChangedListener
                                 .onSelectedItemViewChanged(oldView, newView,

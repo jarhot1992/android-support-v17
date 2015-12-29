@@ -59,7 +59,10 @@ public class EnhanceHorizontalGridlView extends HorizontalGridView {
             case KeyEvent.KEYCODE_DPAD_RIGHT:
                 if (oldPosition < itemCount - 1) {
                     newPosition++;
-                    newView = findViewHolderForAdapterPosition(newPosition).itemView;
+                    ViewHolder viewHolder = findViewHolderForAdapterPosition(newPosition);
+                    if (viewHolder == null)
+                        return true;
+                    newView = viewHolder.itemView;
                     if (mSelectedItemViewChangedListener != null) {
                         mSelectedItemViewChangedListener
                                 .onSelectedItemViewChanged(oldView, newView,
@@ -71,7 +74,10 @@ public class EnhanceHorizontalGridlView extends HorizontalGridView {
             case KeyEvent.KEYCODE_DPAD_LEFT:
                 if (oldPosition > 0) {
                     newPosition--;
-                    newView = findViewHolderForAdapterPosition(newPosition).itemView;
+                    ViewHolder viewHolder = findViewHolderForAdapterPosition(newPosition);
+                    if (viewHolder == null)
+                        return true;
+                    newView = viewHolder.itemView;
                     if (mSelectedItemViewChangedListener != null) {
                         mSelectedItemViewChangedListener
                                 .onSelectedItemViewChanged(oldView, newView,
@@ -83,6 +89,5 @@ public class EnhanceHorizontalGridlView extends HorizontalGridView {
         }
         return super.dispatchKeyEvent(event);
     }
-
 
 }
